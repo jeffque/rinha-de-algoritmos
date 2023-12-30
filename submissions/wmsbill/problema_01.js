@@ -17,12 +17,12 @@ function main(file) {
 
   entries
     .sort((a, b) => b[1] / b[0] - a[1] / a[0])
-    .map(([size, value]) => {
+    .forEach(([size, value]) => {
       if (table.has(size)) {
         table.get(size).push(value);
-      } else {
-        table.set(size, [value]);
+        return;
       }
+      table.set(size, [value]);
     });
 
   const pointers = Array.from({ length: table.size + 1 }, () => 0);
